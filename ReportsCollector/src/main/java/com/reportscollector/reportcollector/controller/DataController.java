@@ -1,8 +1,8 @@
-package com.reportscollector.demo.controller;
+package com.reportscollector.reportcollector.controller;
 
 
-import com.reportscollector.demo.service.DataService;
-import com.reportscollector.demo.model.Data;
+import com.reportscollector.reportcollector.service.DataService;
+import com.reportscollector.reportcollector.model.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

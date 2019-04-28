@@ -1,4 +1,4 @@
-package com.reportscollector.demo;
+package com.reportscollector.reportcollector;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

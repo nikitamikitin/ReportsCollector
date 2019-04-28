@@ -1,4 +1,4 @@
-package com.reportscollector.demo;
+package com.reportscollector.reportcollector;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

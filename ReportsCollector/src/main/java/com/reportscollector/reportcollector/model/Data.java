@@ -1,4 +1,4 @@
-package com.reportscollector.demo.model;
+package com.reportscollector.reportcollector.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

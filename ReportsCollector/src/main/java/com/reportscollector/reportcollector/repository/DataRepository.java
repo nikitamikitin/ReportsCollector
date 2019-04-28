@@ -1,6 +1,6 @@
-package com.reportscollector.demo.repository;
+package com.reportscollector.reportcollector.repository;
 
-import com.reportscollector.demo.model.Data;
+import com.reportscollector.reportcollector.model.Data;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

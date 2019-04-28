@@ -1,7 +1,7 @@
-package com.reportscollector.demo.controller;
+package com.reportscollector.reportcollector.controller;
 
-import com.reportscollector.demo.model.User;
-import com.reportscollector.demo.service.UserService;
+import com.reportscollector.reportcollector.model.User;
+import com.reportscollector.reportcollector.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

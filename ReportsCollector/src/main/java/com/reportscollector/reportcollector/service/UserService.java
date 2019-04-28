@@ -1,7 +1,7 @@
-package com.reportscollector.demo.service;
+package com.reportscollector.reportcollector.service;
 
-import com.reportscollector.demo.model.User;
-import com.reportscollector.demo.repository.UserRepository;
+import com.reportscollector.reportcollector.model.User;
+import com.reportscollector.reportcollector.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
