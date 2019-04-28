@@ -1,7 +1,6 @@
-package model;
+package com.reportscollector.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import org.springframework.data.annotation.Id;
 
 
 import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.ANY;
@@ -9,14 +8,13 @@ import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.NONE;
 
 @JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, isGetterVisibility = NONE, setterVisibility = NONE)
 public class BaseEntity {
-    @Id
+
     String id;
 
     public BaseEntity() {
 
     }
 
-    ;
 
     public BaseEntity(String id) {
         this.id = id;

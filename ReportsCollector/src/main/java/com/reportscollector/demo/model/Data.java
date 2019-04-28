@@ -1,38 +1,39 @@
-package model;
+package com.reportscollector.demo.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-
-
 @Document(collection = "Data")
-public class Data extends BaseEntity {
+public class Data{
 
-    String user_key;
+
+    @JsonProperty(value = "user_key")
+    String userKey;
+
+    @JsonProperty(value = "media_name")
     String media_name;
+
+    @JsonProperty(value = "duration")
     String duration;
+    @JsonProperty(value = "displayed_at")
     int displayed_at;
 
-
-    public Data(String id,String media_name, String duration, int displayed_at) {
-        super(id);
+    public Data(String user_key, String media_name, String duration, int displayed_at) {
+        this.userKey = user_key;
         this.media_name = media_name;
         this.duration = duration;
         this.displayed_at = displayed_at;
-
     }
 
-
-    public void setUserKey(String user_key) {
-        this.user_key = user_key;
-    }
 
     public String getUser_key() {
-        return user_key;
+        return userKey;
     }
 
     public void setUser_key(String user_key) {
-        this.user_key = user_key;
+        this.userKey = user_key;
     }
 
     public String getMedia_name() {
@@ -51,7 +52,7 @@ public class Data extends BaseEntity {
         this.duration = duration;
     }
 
-    public Integer getDisplayed_at() {
+    public int getDisplayed_at() {
         return displayed_at;
     }
 
@@ -59,8 +60,13 @@ public class Data extends BaseEntity {
         this.displayed_at = displayed_at;
     }
 
+    public Data() {
+
+    }
+
+
     public String toString() {
-        return " Data MediaName:" + media_name + " Duration:" + duration + "Displayed at: "+displayed_at;
+        return " Data MediaName:" + media_name + " Duration:" + duration + "Displayed at: " + displayed_at;
     }
 
 }

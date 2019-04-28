@@ -1,4 +1,4 @@
-package model;
+package com.reportscollector.demo.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+
 
 @Document(collection = "User")
 public class User extends BaseEntity {
@@ -26,5 +27,24 @@ public class User extends BaseEntity {
         super(id);
         this.email=email;
         this.password=password;
+
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
 }
