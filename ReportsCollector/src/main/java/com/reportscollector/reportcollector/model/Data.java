@@ -18,9 +18,9 @@ public class Data{
     @JsonProperty(value = "duration")
     String duration;
     @JsonProperty(value = "displayed_at")
-    int displayed_at;
+    Long displayed_at;
 
-    public Data(String user_key, String media_name, String duration, int displayed_at) {
+    public Data(String user_key, String media_name, String duration, Long displayed_at) {
         this.userKey = user_key;
         this.media_name = media_name;
         this.duration = duration;
@@ -52,11 +52,11 @@ public class Data{
         this.duration = duration;
     }
 
-    public int getDisplayed_at() {
+    public Long getDisplayed_at() {
         return displayed_at;
     }
 
-    public void setDisplayed_at(int displayed_at) {
+    public void setDisplayed_at(Long displayed_at) {
         this.displayed_at = displayed_at;
     }
 
