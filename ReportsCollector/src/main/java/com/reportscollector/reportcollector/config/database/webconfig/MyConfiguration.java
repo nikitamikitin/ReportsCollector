@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+// with configuration i used because i put my java application on heroku,disabled cors ,without it get 415 on React
 @Configuration
 public class MyConfiguration {
 
