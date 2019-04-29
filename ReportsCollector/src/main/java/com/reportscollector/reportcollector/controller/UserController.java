@@ -23,7 +23,8 @@ public class UserController {
         if(user==null || user.getEmail()==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if(userService.findByEmail(user.getEmail())!=null){
+        User newUser=userService.findByEmail(user.getEmail());
+        if(newUser.getEmail().equals(user.getEmail())){
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user already exists
         }
          return new  ResponseEntity<>(userService.createUser(user),HttpStatus.OK);
