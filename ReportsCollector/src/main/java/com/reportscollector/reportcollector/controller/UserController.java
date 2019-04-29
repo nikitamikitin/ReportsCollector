@@ -53,10 +53,11 @@ public class UserController {
         }
         User newUser=userService.findByEmail(user.getEmail());
         if(newUser.getEmail().equals(user.getEmail()) &&newUser.getPassword().equals(user.getPassword())){
-            return new ResponseEntity<>(user,HttpStatus.OK);
+
+            return new ResponseEntity<>(newUser,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    };
+    }
 }
 
 
