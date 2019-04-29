@@ -46,6 +46,17 @@ public class UserController {
         }
         return new ResponseEntity<> (user,HttpStatus.OK);
     }
+    @PostMapping(value = "login")
+    public ResponseEntity<User> loginUser(@Valid @RequestBody User user){
+        if(user==null || user.getEmail()==null){
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+        }
+        User newUser=userService.findByEmail(user.getEmail());
+        if(newUser.getEmail().equals(user.getEmail()) &&newUser.getPassword().equals(user.getPassword())){
+            return new ResponseEntity<>(user,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    };
 }
 
 
