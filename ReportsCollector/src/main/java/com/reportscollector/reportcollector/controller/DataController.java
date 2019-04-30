@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -49,6 +50,24 @@ public class DataController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(data,HttpStatus.OK);
+    }
+
+    @GetMapping("{fromTime}/{toTime}/getAllReportsByTime")
+    public ResponseEntity getAllByTime(@PathVariable String fromTime,@PathVariable String toTime) {
+        List<Data> data = dataService.getAllReports();
+        if(data==null){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        Long fT=Long.valueOf(fromTime);
+        Long tT=Long.valueOf(toTime);
+        for(Data data1: data){
+            if (data1.getDisplayed_at()<tT &&data1.getDisplayed_at()>fT){
+                ArrayList<Data> newList=new ArrayList<>();
+                newList.add(data1);
+                return new ResponseEntity<>(newList,HttpStatus.OK);
+            };
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 
