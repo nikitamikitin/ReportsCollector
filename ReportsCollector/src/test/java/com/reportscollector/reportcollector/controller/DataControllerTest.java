@@ -75,9 +75,22 @@ public class DataControllerTest {
         List<Data> dataList=sut.getAllByTime(1L,2L);
         verify(dataService).getAllReports();
         for(Data data2:dataList){
-            if(data2.getDisplayed_at()>1L && data2.getDisplayed_at()<2L){
-                return;
-            }
+                assertTrue(data2.getDisplayed_at()>1L && data2.getDisplayed_at()<2L);
+
         }
+    }
+
+
+    @Test
+    public void create(){
+        Data data=new Data();
+        data.setDisplayed_at(1L);
+        data.setMedia_name("test");
+        data.setDuration("3.22");
+        data.setUser_key("hellotest123");
+        when(dataService.createReport(data)).thenReturn(data);
+        Data data1 =sut.create(data ,"hellotest123");
+        verify(dataService).createReport(data1);
+        assertEquals("hellotest123",data1.getUser_key());
     }
 }
