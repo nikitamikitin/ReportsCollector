@@ -35,13 +35,21 @@ public class DataController {
     }
 
     @GetMapping("getAllReports")
-    public ResponseEntity getAll() {
+    public List<Data> getAll() {
         List<Data> data = dataService.getAllReports();
         if (data == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return null;
         }
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return data;
     }
+//    @GetMapping("getAllReports")
+//    public ResponseEntity getAll() {
+//        List<Data> data = dataService.getAllReports();
+//        if (data == null) {
+//            return new ResponseEntity(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(data, HttpStatus.OK);
+//    }
 
     @GetMapping("{userKey}/getAllReports")
     public List<Data> getAllByUserKey(@PathVariable String userKey) {
@@ -61,23 +69,43 @@ public class DataController {
 //    }
 
     @GetMapping("{fromTime}/{toTime}/getAllReportsByTime")
-    public ResponseEntity getAllByTime(@PathVariable String fromTime, @PathVariable String toTime) {
+    public List<Data> getAllByTime(@PathVariable Long fromTime, @PathVariable Long toTime) {
         List<Data> data = dataService.getAllReports();
         if (data == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return null;
         }
-        Long fT = Long.valueOf(fromTime);
-        Long tT = Long.valueOf(toTime);
+//        Long fT = Long.valueOf(fromTime);
+//        Long tT = Long.valueOf(toTime);
         ArrayList<Data> newList = new ArrayList<>();
         for (Data data1 : data) {
-            if (data1.getDisplayed_at() < tT && data1.getDisplayed_at() > fT) {
+            if (data1.getDisplayed_at() < toTime && data1.getDisplayed_at() > fromTime) {
                 newList.add(data1);
             }
         }
-            return new ResponseEntity<>(newList, HttpStatus.OK);
-        }
-
+        return newList;
     }
+
+}
+
+
+//    @GetMapping("{fromTime}/{toTime}/getAllReportsByTime")
+//    public ResponseEntity getAllByTime(@PathVariable String fromTime, @PathVariable String toTime) {
+//        List<Data> data = dataService.getAllReports();
+//        if (data == null) {
+//            return new ResponseEntity(HttpStatus.NOT_FOUND);
+//        }
+//        Long fT = Long.valueOf(fromTime);
+//        Long tT = Long.valueOf(toTime);
+//        ArrayList<Data> newList = new ArrayList<>();
+//        for (Data data1 : data) {
+//            if (data1.getDisplayed_at() < tT && data1.getDisplayed_at() > fT) {
+//                newList.add(data1);
+//            }
+//        }
+//            return new ResponseEntity<>(newList, HttpStatus.OK);
+//        }
+//
+//    }
 
 
 

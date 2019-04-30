@@ -1,9 +1,7 @@
 package com.reportscollector.reportcollector.controller;
 
 import static org.junit.Assert.*;
-import com.google.common.collect.ImmutableList;
 import com.reportscollector.reportcollector.model.Data;
-import com.reportscollector.reportcollector.repository.DataRepository;
 import com.reportscollector.reportcollector.service.DataService;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.http.ResponseEntity;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +20,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DataControllerTest {
-//    @Mock
-//    private DataService dataService;
+
 
     @Mock
     private DataService dataService;
@@ -37,15 +34,20 @@ public class DataControllerTest {
     }
 
 
-//    @Test
-//    public void getAll() {
-//        //prepare
-//        when(dataService.getAllReports()).thenReturn(ImmutableList.of());
-//        //testing
-//        ResponseEntity dataList= sut.getAll();
-//        //validate
-//        verify(dataService).getAllReports();
-//    }
+    @Test
+    public void getAll() {
+        List<Data> dataList =new ArrayList<>();
+        Data data1=new Data();
+        dataList.add(data1);
+        when(dataService.getAllReports()).thenReturn(dataList);
+        //testing
+        List<Data> newList=sut.getAll();
+        //validate
+        verify(dataService).getAllReports();
+        for(Data data: newList){
+            data.equals(data1);
+        }
+    }
 
     @Test
     public void getAllByUserKey(){
@@ -61,5 +63,21 @@ public class DataControllerTest {
             assertEquals("1L",data2.getUser_key());
         }
 
+    }
+
+    @Test
+    public void getAllByTime(){
+        List<Data> data =new ArrayList<>();
+        Data data1=new Data();
+        data1.setDisplayed_at(1L);
+        data.add(data1);
+        when(dataService.getAllReports()).thenReturn(data);
+        List<Data> dataList=sut.getAllByTime(1L,2L);
+        verify(dataService).getAllReports();
+        for(Data data2:dataList){
+            if(data2.getDisplayed_at()>1L && data2.getDisplayed_at()<2L){
+                return;
+            }
+        }
     }
 }
