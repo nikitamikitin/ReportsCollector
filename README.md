@@ -1,10 +1,10 @@
 # ReportsCollector
 What we can do here
 					
-1.You can create user using adrress https://reportscollector.herokuapp.com/createUser method post
+1. You can create user using adrress https://reportscollector.herokuapp.com/createUser method post
 your body {"email":"test@com.com", "password":"123456"} header (Content-Type : "application/json") 
 
-2.You can login here using adrress https://reportscollector.herokuapp.com/login method post
+2. You can login here using adrress https://reportscollector.herokuapp.com/login method post
 your body {"email":"test@com.com", "password":"123456"} header (Content-Type : "application/json") 
 
 3. You can get user from db  https://reportscollector.herokuapp.com/email/getUserByEmail method get
