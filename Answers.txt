@@ -5,9 +5,15 @@ The backup site service (without modifying their website or service) is very imp
 2. In case of failure, switch the work to backup DC.
 
 
-Regular database backup is an important step in data protection. In general, there are two broad categories of backups: backups at the file system level (“physical copies”) and logical backups. Physical backup (at the file system level) involves creating snapshots of the main data files at a certain point in time, which allows you to recover data using the state recorded in snapshots.
+Regular database backup is an important step in data protection. 
+In general, there are two broad categories of backups: backups at the file system level (“physical copies”) and logical backups. 
+Physical backup (at the file system level) involves creating snapshots of the main data files at a certain point in time, which allows you to recover data using the state recorded in snapshots.
 
 
 2.In case this server handles huge amount of events, how would you implement a feature that will need to preform complex aggregations?
 
 
+
+A command like getLastError, the essence of it is to wait until all operations are saved to the database and return an error code or a successful completion.
+The specification tries hard to convince that the method is outdated and should not be used, it is marked depricated in the Monga driver.
+https://docs.mongodb.com/manual/reference/command/getLastError/
