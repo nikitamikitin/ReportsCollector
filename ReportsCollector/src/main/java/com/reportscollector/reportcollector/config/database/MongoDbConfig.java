@@ -37,7 +37,7 @@ public class MongoDbConfig extends AbstractMongoConfiguration {
         int port=49676;
         String username="heroku_rhz3q55j";
         String database="heroku_rhz3q55j";
-        String s = "jpht1etqkiiukl72cv1cb588ie@ds149676";
+        String s = "jpht1etqkiiukl72cv1cb588ie";
         char [] password = s.toCharArray();
         List<MongoCredential> credentials = new ArrayList<>();
         credentials.add(MongoCredential.createScramSha1Credential(username, database, password));
