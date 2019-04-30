@@ -65,7 +65,7 @@ public class DataController {
                 ArrayList<Data> newList=new ArrayList<>();
                 newList.add(data1);
                 return new ResponseEntity<>(newList,HttpStatus.OK);
-            };
+            }
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
