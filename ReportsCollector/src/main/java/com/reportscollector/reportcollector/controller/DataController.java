@@ -33,16 +33,6 @@ public class DataController {
     }
 
 
-//    @PostMapping("/{userId}/collector/report")
-//    public ResponseEntity<Data> create(@Valid @RequestBody Data data, @PathVariable String userId) {
-//        if (data.getDuration() == null || data.getMedia_name() == null || data.getDisplayed_at() == 0) {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        data.setUser_key(userId);
-//        dataService.createReport(data);
-//        return new ResponseEntity<>(data, HttpStatus.OK);
-//    }
-
     @GetMapping("getAllReports")
     public List<Data> getAll() {
         List<Data> data = dataService.getAllReports();
@@ -51,14 +41,7 @@ public class DataController {
         }
         return data;
     }
-//    @GetMapping("getAllReports")
-//    public ResponseEntity getAll() {
-//        List<Data> data = dataService.getAllReports();
-//        if (data == null) {
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(data, HttpStatus.OK);
-//    }
+
 
     @GetMapping("{userKey}/getAllReports")
     public List<Data> getAllByUserKey(@PathVariable String userKey) {
@@ -68,14 +51,7 @@ public class DataController {
         }
         return data;
     }
-//    @GetMapping("{userKey}/getAllReports")
-//    public ResponseEntity getAllByUserKey(@PathVariable String userKey) {
-//        List<Data> data = dataService.getAllReportsById(userKey);
-//        if (data == null) {
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
-//        return new ResponseEntity<>(data, HttpStatus.OK);
-//    }
+
 
     @GetMapping("{fromTime}/{toTime}/getAllReportsByTime")
     public List<Data> getAllByTime(@PathVariable Long fromTime, @PathVariable Long toTime) {
@@ -83,8 +59,6 @@ public class DataController {
         if (data == null) {
             return null;
         }
-//        Long fT = Long.valueOf(fromTime);
-//        Long tT = Long.valueOf(toTime);
         ArrayList<Data> newList = new ArrayList<>();
         for (Data data1 : data) {
             if (data1.getDisplayed_at() < toTime && data1.getDisplayed_at() > fromTime) {
@@ -97,24 +71,6 @@ public class DataController {
 }
 
 
-//    @GetMapping("{fromTime}/{toTime}/getAllReportsByTime")
-//    public ResponseEntity getAllByTime(@PathVariable String fromTime, @PathVariable String toTime) {
-//        List<Data> data = dataService.getAllReports();
-//        if (data == null) {
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
-//        Long fT = Long.valueOf(fromTime);
-//        Long tT = Long.valueOf(toTime);
-//        ArrayList<Data> newList = new ArrayList<>();
-//        for (Data data1 : data) {
-//            if (data1.getDisplayed_at() < tT && data1.getDisplayed_at() > fT) {
-//                newList.add(data1);
-//            }
-//        }
-//            return new ResponseEntity<>(newList, HttpStatus.OK);
-//        }
-//
-//    }
 
 
 

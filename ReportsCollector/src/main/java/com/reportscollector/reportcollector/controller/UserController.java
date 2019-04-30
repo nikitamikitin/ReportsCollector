@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Null;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -19,77 +18,46 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @PostMapping(value = "createUser")
-    public User createUser(@Valid @RequestBody User user){
-        if(user==null || user.getEmail()==null){
-            return null;
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+        if (user == null || user.getEmail() == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if(userService.findByEmail(user.getEmail())!=null){
-            return null;
+        if (userService.findByEmail(user.getEmail()) != null) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user already exists
         }
-        userService.createUser(user);
-         return user;
+        return new ResponseEntity<>(userService.createUser(user), HttpStatus.OK);
     }
 
-//    @PostMapping(value = "createUser")
-//    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
-//        if(user==null || user.getEmail()==null){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        if(userService.findByEmail(user.getEmail())!=null){
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user already exists
-//        }
-//        return new  ResponseEntity<>(userService.createUser(user),HttpStatus.OK);
-//    }
-
     @GetMapping(value = "/{email}/getUserByEmail")
-    public  User getUser(@PathVariable String email){
-        User user=userService.findByEmail(email);
-        if(user==null){
+    public User getUser(@PathVariable String email) {
+        User user = userService.findByEmail(email);
+        if (user == null) {
             return null;
         }
         return user;
 
     }
-
-//    @GetMapping(value = "/{email}/getUserByEmail")
-//    public  ResponseEntity getUser(@PathVariable String email){
-//        User user=userService.findByEmail(email);
-//        if(user==null){
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user is not exists in db
-//        }
-//        return new ResponseEntity<>(user,HttpStatus.OK);
-//
-//    }
 
 
     @GetMapping(value = "/{id}/getUserById")
-    public User getUserById(@PathVariable String id){
-        User user =userService.findOne(id);
-        if(user==null){
+    public User getUserById(@PathVariable String id) {
+        User user = userService.findOne(id);
+        if (user == null) {
             return null;
         }
         return user;
     }
 
 
-//    @GetMapping(value = "/{id}/getUserById")
-//    public ResponseEntity<User> getUserById(@PathVariable String id){
-//        User user =userService.findOne(id);
-//        if(user==null){
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user is not exists in db
-//        }
-//        return new ResponseEntity<> (user,HttpStatus.OK);
-//    }
-
-
     @PostMapping(value = "login")
-    public User loginUser(@Valid @RequestBody User user){
-        if(user==null || user.getEmail()==null){
+    public User loginUser(@Valid @RequestBody User user) {
+        if (user == null || user.getEmail() == null) {
             return null;
         }
-        User newUser=userService.findByEmail(user.getEmail());
-        if(newUser.getEmail().equals(user.getEmail()) &&newUser.getPassword().equals(user.getPassword())){
+        User newUser = userService.findByEmail(user.getEmail());
+        if (newUser.getEmail().equals(user.getEmail()) && newUser.getPassword().equals(user.getPassword())) {
 
             return newUser;
         }
@@ -97,19 +65,6 @@ public class UserController {
     }
 
 
-
-//    @PostMapping(value = "login")
-//    public ResponseEntity<User> loginUser(@Valid @RequestBody User user){
-//        if(user==null || user.getEmail()==null){
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//        }
-//        User newUser=userService.findByEmail(user.getEmail());
-//        if(newUser.getEmail().equals(user.getEmail()) &&newUser.getPassword().equals(user.getPassword())){
-//
-//            return new ResponseEntity<>(newUser,HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
 }
 
 
