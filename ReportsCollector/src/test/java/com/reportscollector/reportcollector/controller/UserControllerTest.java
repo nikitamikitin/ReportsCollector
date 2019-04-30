@@ -48,7 +48,6 @@ public class UserControllerTest {
         user.setEmail("test@com.com");
         user.setPassword("123456");
         when(userService.findByEmail("test@com.com")).thenReturn(user);
-
         User user1 = sut.getUser("test@com.com");
         verify(userService).findByEmail("test@com.com");
         assertEquals("test@com.com", user1.getEmail());

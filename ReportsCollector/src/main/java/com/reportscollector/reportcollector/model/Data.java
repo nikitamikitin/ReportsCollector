@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document(collection = "Data")
-public class Data{
+public class Data {
 
 
     @JsonProperty(value = "user_key")
