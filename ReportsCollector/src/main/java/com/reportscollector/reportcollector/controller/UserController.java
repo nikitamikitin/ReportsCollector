@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 
 @RestController
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,34 +42,73 @@ public class UserController {
 //    }
 
     @GetMapping(value = "/{email}/getUserByEmail")
-    public  ResponseEntity getUser(@PathVariable String email){
+    public  User getUser(@PathVariable String email){
         User user=userService.findByEmail(email);
         if(user==null){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user is not exists in db
+            return null;
         }
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        return user;
 
     }
+
+//    @GetMapping(value = "/{email}/getUserByEmail")
+//    public  ResponseEntity getUser(@PathVariable String email){
+//        User user=userService.findByEmail(email);
+//        if(user==null){
+//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user is not exists in db
+//        }
+//        return new ResponseEntity<>(user,HttpStatus.OK);
+//
+//    }
+
+
     @GetMapping(value = "/{id}/getUserById")
-    public ResponseEntity<User> getUserById(@PathVariable String id){
+    public User getUserById(@PathVariable String id){
         User user =userService.findOne(id);
         if(user==null){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user is not exists in db
+            return null;
         }
-        return new ResponseEntity<> (user,HttpStatus.OK);
+        return user;
     }
+
+
+//    @GetMapping(value = "/{id}/getUserById")
+//    public ResponseEntity<User> getUserById(@PathVariable String id){
+//        User user =userService.findOne(id);
+//        if(user==null){
+//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user is not exists in db
+//        }
+//        return new ResponseEntity<> (user,HttpStatus.OK);
+//    }
+
+
     @PostMapping(value = "login")
-    public ResponseEntity<User> loginUser(@Valid @RequestBody User user){
+    public User loginUser(@Valid @RequestBody User user){
         if(user==null || user.getEmail()==null){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+            return null;
         }
         User newUser=userService.findByEmail(user.getEmail());
         if(newUser.getEmail().equals(user.getEmail()) &&newUser.getPassword().equals(user.getPassword())){
 
-            return new ResponseEntity<>(newUser,HttpStatus.OK);
+            return newUser;
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return null;
     }
+
+
+
+//    @PostMapping(value = "login")
+//    public ResponseEntity<User> loginUser(@Valid @RequestBody User user){
+//        if(user==null || user.getEmail()==null){
+//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+//        }
+//        User newUser=userService.findByEmail(user.getEmail());
+//        if(newUser.getEmail().equals(user.getEmail()) &&newUser.getPassword().equals(user.getPassword())){
+//
+//            return new ResponseEntity<>(newUser,HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
 }
 
 

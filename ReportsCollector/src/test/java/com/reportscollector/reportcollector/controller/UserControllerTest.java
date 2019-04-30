@@ -24,45 +24,61 @@ public class UserControllerTest {
 
 
     @Before
-    public void init(){
+    public void init() {
         MockitoAnnotations.initMocks(this);
     }
 
 
-
-////    @Test
-//    public void create(){
-//        Data data=new Data();
-//        data.setDisplayed_at(1L);
-//        data.setMedia_name("test");
-//        data.setDuration("3.22");
-//        data.setUser_key("hellotest123");
-//        when(dataService.createReport(data)).thenReturn(data);
-//        Data data1 =sut.create(data ,"hellotest123");
-//        verify(dataService).createReport(data1);
-//        assertEquals("hellotest123",data1.getUser_key());
-//    }
-
     @Test
     public void createUser() {
-        User user =new User();
+        User user = new User();
         user.setEmail("test@com.com");
         user.setPassword("123456");
         when(userService.createUser(user)).thenReturn(user);
-        User user1=sut.createUser(user);
+        User user1 = sut.createUser(user);
         verify(userService).createUser(user1);
-        assertEquals("test@com.com",user1.getEmail());
+        assertEquals("test@com.com", user1.getEmail());
     }
+
 
     @Test
     public void getUser() {
+        User user = new User();
+        user.setEmail("test@com.com");
+        user.setPassword("123456");
+        when(userService.findByEmail("test@com.com")).thenReturn(user);
+
+        User user1 = sut.getUser("test@com.com");
+        verify(userService).findByEmail("test@com.com");
+        assertEquals("test@com.com", user1.getEmail());
+
     }
+
 
     @Test
     public void getUserById() {
+        User user = new User();
+        user.setId("testId");
+        when(userService.findOne("testId")).thenReturn(user);
+        User user1 = sut.getUserById("testId");
+        verify(userService).findOne("testId");
+        assertEquals("testId", user1.getId());
     }
 
     @Test
     public void loginUser() {
+        User user = new User();
+        user.setEmail("test@com.com");
+        user.setPassword("123456");
+        when(userService.findByEmail("test@com.com")).thenReturn(user);
+
+
+        User userTest = new User();
+        userTest.setEmail("test@com.com");
+        userTest.setPassword("123456");
+
+        User user1 = sut.loginUser(userTest);
+        verify(userService).findByEmail("test@com.com");
+        assertEquals("test@com.com", user1.getEmail());
     }
 }

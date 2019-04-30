@@ -30,6 +30,7 @@ public class User extends BaseEntity {
 
     }
 
+
     public String getEmail() {
         return email;
     }
