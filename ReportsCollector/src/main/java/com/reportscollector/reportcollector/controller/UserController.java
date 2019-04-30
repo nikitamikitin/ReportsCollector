@@ -19,15 +19,26 @@ public class UserController {
     private UserService userService;
 
     @PostMapping(value = "createUser")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
+    public User createUser(@Valid @RequestBody User user){
         if(user==null || user.getEmail()==null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return null;
         }
         if(userService.findByEmail(user.getEmail())!=null){
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user already exists
+            return null;
         }
-         return new  ResponseEntity<>(userService.createUser(user),HttpStatus.OK);
+         return userService.createUser(user);
     }
+
+//    @PostMapping(value = "createUser")
+//    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
+//        if(user==null || user.getEmail()==null){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        if(userService.findByEmail(user.getEmail())!=null){
+//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);//user already exists
+//        }
+//        return new  ResponseEntity<>(userService.createUser(user),HttpStatus.OK);
+//    }
 
     @GetMapping(value = "/{email}/getUserByEmail")
     public  ResponseEntity getUser(@PathVariable String email){
