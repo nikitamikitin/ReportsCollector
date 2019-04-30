@@ -44,13 +44,21 @@ public class DataController {
     }
 
     @GetMapping("{userKey}/getAllReports")
-    public ResponseEntity getAllByUserKey(@PathVariable String userKey) {
+    public List<Data> getAllByUserKey(@PathVariable String userKey) {
         List<Data> data = dataService.getAllReportsById(userKey);
         if (data == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return null;
         }
-        return new ResponseEntity<>(data, HttpStatus.OK);
+        return data;
     }
+//    @GetMapping("{userKey}/getAllReports")
+//    public ResponseEntity getAllByUserKey(@PathVariable String userKey) {
+//        List<Data> data = dataService.getAllReportsById(userKey);
+//        if (data == null) {
+//            return new ResponseEntity(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(data, HttpStatus.OK);
+//    }
 
     @GetMapping("{fromTime}/{toTime}/getAllReportsByTime")
     public ResponseEntity getAllByTime(@PathVariable String fromTime, @PathVariable String toTime) {
