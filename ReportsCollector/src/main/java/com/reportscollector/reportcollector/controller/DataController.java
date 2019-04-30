@@ -60,12 +60,12 @@ public class DataController {
         }
         Long fT=Long.valueOf(fromTime);
         Long tT=Long.valueOf(toTime);
+        ArrayList<Data> newList=new ArrayList<>();
         for(Data data1: data){
             if (data1.getDisplayed_at()<tT &&data1.getDisplayed_at()>fT){
-                ArrayList<Data> newList=new ArrayList<>();
                 newList.add(data1);
-                return new ResponseEntity<>(newList,HttpStatus.OK);
             }
+            return new ResponseEntity<>(newList,HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
