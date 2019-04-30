@@ -29,16 +29,16 @@ public class UserControllerTest {
     }
 
 
-    @Test
-    public void createUser() {
-        User user = new User();
-        user.setEmail("test@com.com");
-        user.setPassword("123456");
-        when(userService.createUser(user)).thenReturn(user);
-        User user1 = sut.createUser(user);
-        verify(userService).createUser(user1);
-        assertEquals("test@com.com", user1.getEmail());
-    }
+//    @Test
+//    public void createUser() {
+//        User user = new User();
+//        user.setEmail("test@com.com");
+//        user.setPassword("123456");
+//        when(userService.createUser(user)).thenReturn(user);
+//        User user1 = sut.createUser(user);
+//        verify(userService).createUser(user1);
+//        assertEquals("test@com.com", user1.getEmail());
+//    }
 
 
     @Test
