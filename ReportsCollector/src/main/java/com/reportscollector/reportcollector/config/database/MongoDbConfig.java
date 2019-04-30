@@ -27,16 +27,17 @@ public class MongoDbConfig extends AbstractMongoConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "heroku_gqns3x5c";
+        return "heroku_rhz3q55j";
     }
+
 
     @Override
     public MongoClient mongoClient() {
-        String host = "ds147946.mlab.com";
-        int port=47946;
-        String username="heroku_gqns3x5c";
-        String database="heroku_gqns3x5c";
-        String s = "7335qkjkff7fci12kuetuetsh1";
+        String host = "ds149676.mlab.com";
+        int port=49676;
+        String username="heroku_rhz3q55j";
+        String database="heroku_rhz3q55j";
+        String s = "jpht1etqkiiukl72cv1cb588ie@ds149676";
         char [] password = s.toCharArray();
         List<MongoCredential> credentials = new ArrayList<>();
         credentials.add(MongoCredential.createScramSha1Credential(username, database, password));
