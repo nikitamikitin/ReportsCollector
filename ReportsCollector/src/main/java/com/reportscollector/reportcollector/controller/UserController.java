@@ -23,10 +23,9 @@ public class UserController {
     public User createUser(@Valid @RequestBody User user){
         if(user==null || user.getEmail()==null){
             return null;
-        }
-        if(userService.findByEmail(user.getEmail())!=null){
+        }else if(userService.findByEmail(user.getEmail())!=null){
             return null;
-        }
+        }else
          return userService.createUser(user);
     }
 
