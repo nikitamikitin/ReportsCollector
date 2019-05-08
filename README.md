@@ -25,6 +25,7 @@ Type of variable "userId" String.
 Type of variable "userId" String.
 userKey special id,which MongoDB created,when you create you user in DB.
 
-8. You can get all reports from db by time https://reportscollector.herokuapp.com/fromTime/toTime/getAllReportsByTime method get
+8. You can get all reports from db by time https://reportscollector.herokuapp.com/fromTime/toTime/getAllReportsByTime/index method get
 If you want to see all reports fromDate to Date.
-Type of variable "fromTime" ,toTime Long.
+Type of variable "fromTime" ,"toTime" Long.
+Type of variable "index" int. You can start index from 0 then you can increase the variable to receive the remaining parts.(in front side for example you can you use scroll)
