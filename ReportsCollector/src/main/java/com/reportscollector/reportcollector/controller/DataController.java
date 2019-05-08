@@ -27,9 +27,16 @@ public class DataController {
         if (data.getDuration() == null || data.getMedia_name() == null || data.getDisplayed_at() == 0) {
             return null;
         }
+        new Thread(() -> {
+            save(data,userId);
+        }).start();
+        System.out.println("Sending report" );
+        return data;
+    }
+    private void save (Data data,String userId){
         data.setUser_key(userId);
         dataService.createReport(data);
-        return data;
+        System.out.println("Saving data on db");
     }
 
 
