@@ -18,7 +18,7 @@ A command like getLastError, the essence of it is to wait until all operations a
 The specification tries hard to convince that the method is outdated and should not be used, it is marked depricated in the Monga driver.
 https://docs.mongodb.com/manual/reference/command/getLastError/
 
-3.What you want to do is called Connection pooling. 
+3.Is called Connection pooling. 
 The solution for the mentioned problem would be to use the semaphoreing system that a database allows, specifically transactions.
 First, you read the table and find the first record that is unused. You propagate the number back to your application. Then you try to open the record exclusively (for writing). 
 You check again if the record is still unused, and if it is, fetch the data for the record. 
