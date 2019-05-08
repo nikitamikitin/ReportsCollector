@@ -73,7 +73,7 @@ public class DataControllerTest {
         data1.setDisplayed_at(1L);
         data.add(data1);
         when(dataService.getAllReports()).thenReturn(data);
-        List<Data> dataList = sut.getAllByTime(1L, 2L);
+        List<Data> dataList = sut.getAllByTime(1L, 2L,2);
         verify(dataService).getAllReports();
         for (Data data2 : dataList) {
             assertTrue(data2.getDisplayed_at() > 1L && data2.getDisplayed_at() < 2L);

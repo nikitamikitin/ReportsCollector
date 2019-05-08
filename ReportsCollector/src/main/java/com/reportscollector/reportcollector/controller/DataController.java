@@ -60,19 +60,26 @@ public class DataController {
     }
 
 
-    @GetMapping("{fromTime}/{toTime}/getAllReportsByTime")
-    public List<Data> getAllByTime(@PathVariable Long fromTime, @PathVariable Long toTime) {
+    @GetMapping("{fromTime}/{toTime}/getAllReportsByTime/{index}")
+    public List<Data> getAllByTime(@PathVariable Long fromTime, @PathVariable Long toTime,@PathVariable int index) {
         List<Data> data = dataService.getAllReports();
         if (data == null) {
             return null;
         }
-        ArrayList<Data> newList = new ArrayList<>();
+        List<Data> newList = new ArrayList<>();
         for (Data data1 : data) {
             if (data1.getDisplayed_at() < toTime && data1.getDisplayed_at() > fromTime) {
                 newList.add(data1);
             }
         }
-        return newList;
+        if(newList.size()<10){
+            return newList;
+        }
+        else if(index<newList.size()){
+            List<Data> list=newList.subList(Math.max(0, index), Math.min(newList.size(), index+10));
+            return list;
+        }
+        return null;
     }
 
 }
