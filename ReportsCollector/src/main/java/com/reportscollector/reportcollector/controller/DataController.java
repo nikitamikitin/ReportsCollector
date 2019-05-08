@@ -72,14 +72,14 @@ public class DataController {
                 newList.add(data1);
             }
         }
-        if(newList.size()<10){
+        if(newList.size()<=10){
             return newList;
         }
         else if(index<newList.size()){
             List<Data> list=newList.subList(Math.max(0, index), Math.min(newList.size(), index+10));
             return list;
         }
-        return null;
+        return new ArrayList<>();
     }
 
 }
